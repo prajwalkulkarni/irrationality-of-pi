@@ -29,9 +29,9 @@ canvas.addEventListener("click", (e) => {
   }
 });
 zoomIn.addEventListener("click", (e) => {
-  ctx.translate(150, 150);
+  ctx.translate(300, 300);
   ctx.scale(scale, scale);
-  ctx.translate(-150, -150);
+  ctx.translate(-300, -300);
   if (!play) {
     piBeingIrrational();
   }
@@ -59,13 +59,13 @@ reset.addEventListener("click", () => {
 });
 function piBeingIrrational() {
   ctx.strokeStyle = "black";
-  ctx.clearRect(0, 0, 300, 300);
-  ctx.strokeRect(0, 0, 300, 300);
+  ctx.clearRect(0, 0, 600, 600);
+  ctx.strokeRect(0, 0, 600, 600);
 
   const centerX = canvas.width / 2;
   const centerY = canvas.height / 2;
 
-  const radius = 40;
+  const radius = 80;
 
   const primaryHandEndX = centerX - radius * Math.cos(theta);
   const primaryHandEndY = centerY - radius * Math.sin(theta);
