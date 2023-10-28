@@ -1,7 +1,8 @@
 const playPause = document.getElementById("play-pause");
 
-let rotation = 0;
-let rotationOfSecondaryLine = 0;
+let theta = 0;
+let thetaOfSecondaryLine = 0;
+const pi = Math.PI;
 const trail = [];
 
 let play = true;
@@ -24,46 +25,41 @@ function piBeingIrrational() {
   ctx.strokeStyle = "black";
   ctx.clearRect(0, 0, 300, 300);
   ctx.strokeRect(0, 0, 300, 300);
-  // ctx.scale(0.5,0.5);
-  ctx.save();
 
   const centerX = canvas.width / 2;
   const centerY = canvas.height / 2;
 
   const radius = 40;
 
-  const primaryHandX = centerX + radius * Math.cos(rotation);
-  const primaryHandY = centerY + radius * Math.sin(rotation);
+  const primaryHandEndX = centerX + radius * Math.cos(theta);
+  const primaryHandEndY = centerY + radius * Math.sin(theta);
 
+  ctx.save();
   ctx.lineWidth = 0.8;
 
   ctx.translate(centerX, centerY);
   ctx.beginPath();
-  ctx.rotate(rotation);
   ctx.moveTo(0, 0);
-  ctx.lineTo(primaryHandX - centerX, primaryHandY - centerY);
+  ctx.lineTo(primaryHandEndX - centerX, primaryHandEndY - centerY);
   ctx.stroke();
 
-  const drawingHandX =
-    primaryHandX + radius * Math.cos(rotationOfSecondaryLine + rotation);
-  const drawingHandY =
-    primaryHandY + radius * Math.sin(rotationOfSecondaryLine + rotation);
+  const drawingHandEndX = primaryHandEndX + radius * Math.cos(theta * pi);
+  const drawingHandEndY = primaryHandEndY + radius * Math.sin(theta * pi);
 
-  // ctx.translate(20,0);
   ctx.beginPath();
-  // ctx.rotate(rotationOfSecondaryLine);
-  ctx.moveTo(primaryHandX - centerX, primaryHandY - centerY);
-  ctx.lineTo(drawingHandX - centerX, drawingHandY - centerY);
+  ctx.moveTo(primaryHandEndX - centerX, primaryHandEndY - centerY);
+  ctx.lineTo(drawingHandEndX - centerX, drawingHandEndY - centerY);
   ctx.stroke();
 
   ctx.beginPath();
-  ctx.arc(primaryHandX - centerX, primaryHandY - centerY, 2, 0, Math.PI * 2);
+  ctx.arc(primaryHandEndX - centerX, primaryHandEndY - centerY, 2, 0, pi * 2);
   ctx.fill();
   ctx.closePath();
+  ctx.restore();
 
   trail.push({
-    x: drawingHandX - centerX,
-    y: drawingHandY - centerY,
+    x: drawingHandEndX,
+    y: drawingHandEndY,
   });
 
   ctx.beginPath();
@@ -73,10 +69,7 @@ function piBeingIrrational() {
   }
   ctx.stroke();
 
-  rotation += (Math.PI / 180) * 0.5;
-  rotationOfSecondaryLine += (Math.PI / 180) * 0.5 * Math.PI * 2;
-
-  ctx.restore();
+  theta += (pi / 180) * 1.5;
 
   if (play) {
     window.requestAnimationFrame(piBeingIrrational);
