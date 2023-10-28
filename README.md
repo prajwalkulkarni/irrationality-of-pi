@@ -12,3 +12,7 @@
 - Click on any area to zoom in.
 - Alternatively, you can use the +/- to zoom in/out about the center.
 - Reset the pattern progression at any point.
+
+### Footnotes
+
+This implementation was inspired by the visualisation of pi by [fascinating.fractals](https://www.instagram.com/fascinating.fractals/?hl=en) on Instagram
