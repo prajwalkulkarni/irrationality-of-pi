@@ -1,19 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="description" content="Irrationality of Pi">
     <meta name="width" content="device-width, initial-scale=1.0">
     <title>Irrationality of Pi</title>
     <script defer src="pi.js" type="text/javascript"></script>
+
+    <style>
+        * {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background: url("./background.jpg");
+            background-size: cover;
+            height: 100vh;
+
+        }
+
+        section {
+            height: 100%;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+        }
+
+        .canvas_container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin: auto;
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+
+        .button-positions {
+            width: calc(100% - 8px);
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            display: flex;
+            justify-content: space-between;
+            padding: 4px;
+        }
+
+        .button-positions>button {
+            margin: 0px 4px;
+        }
+
+        button {
+            padding: 8px;
+            border: none;
+            background-color: #0084ff;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 4px;
+            transition:  width 0.2s ease-in-out;
+        }
+    </style>
 </head>
 
 <body>
 
-    <canvas id="canvas" height="300" width="300"></canvas>
 
-    <button id="play-pause">Pause</button>
-   
+
+    <section>
+
+        <div class="canvas_container">
+            <div class="button-positions">
+                <div>
+                    <button id="play-pause">Pause</button>
+                    <button id="reset">Reset</button>
+                </div>
+                <div>
+                    <button id="plus">+</button>
+                    <button id="minus">-</button>
+                </div>
+            </div>
+            <canvas id="canvas" height="300" width="300"></canvas>
+
+        </div>
+    </section>
+
+
 </body>
 
 </html>
